@@ -1,0 +1,144 @@
+#Valor gasto nos transportes de veí­culos de cada empresa e do total
+#Valor gasto com os materiais de cada empresa e do total
+#Tempo gasto para abastecer a obra
+
+#Empresa A - Cimento - Areia - Bloco - Concreto - Telha - Armação de aço
+#Empresa B - Tinta - Piso - Encanações - Materiais para Tubulações e Conexões de PvC
+#Empresa C - Materiais para Iluminações - Condutores - Cabos- Fios
+#Empresa D - Tabelas de Basquete - Redes de Volei - Traves de Futsal
+
+#Os veí­culos saem da empresa para a Obra
+
+#Custo do Frete por KM = 3,50
+
+#PREÇ‡O UNITÁRIO ABAIXO
+
+
+cimento_poty_50 = 31.1
+areia_fina = 600
+areia_grossa = 650
+caminhao_concreto = 1900
+bloco = 2
+telha_aluminio = 70
+armação_aço = 65
+
+ 
+tinta_branca = 90
+tinta_verde = 80
+tinta_vermelha = 90
+piso = 200
+cano_50mm = 15
+cano_30mm = 12
+cano_10mm = 10
+Conexões = 10
+
+
+lampada = 15
+fio_40mm = 14
+fio_25mm = 10
+fio_10mm = 5
+interruptor = 4
+tomada = 6
+
+
+basquete = 1800 
+volei = 450
+futsal = 500
+
+
+d_obra_A = 35
+d_obra_B = 65
+d_obra_C = 55
+d_obra_D = 80
+
+Frete = 3.5
+
+
+#Eles ofereceram 10 caminhões por vez
+#A gente so paga o frete que eles trazem, não o que eles precisam voltar pra buscar
+
+
+pedagio = 25
+
+qtd_caminhoes_A = 40
+qtd_caminhoes_B = 1
+qtd_caminhoes_C = 1
+qtd_caminhoes_D = 1
+
+valor_transporte_A = Frete * d_obra_A * qtd_caminhoes_A
+valor_transporte_B = Frete * d_obra_B * qtd_caminhoes_B
+valor_transporte_C = Frete * d_obra_C * qtd_caminhoes_C
+valor_transporte_D = Frete * d_obra_D * qtd_caminhoes_D + pedagio
+valor_transporte_Total = valor_transporte_A + valor_transporte_B + valor_transporte_C + valor_transporte_D
+
+
+materiais_A = cimento_poty_50*300 + areia_fina*20 + areia_grossa*5 + caminhao_concreto*12 + bloco*3750 + telha_aluminio*725 + armação_aço
+materiais_B = tinta_branca*5 + tinta_verde*20 + tinta_vermelha*8 + piso*175 + cano_50mm*30 + cano_30mm*10 + cano_10mm*5 + Conexões*16
+materiais_C = lampada*15 + fio_40mm*50 + fio_25mm*25 + fio_10mm*10 + interruptor*10 + tomada*8
+materiais_D = basquete*2 + volei + futsal 
+materiais_Total = materiais_A + materiais_B + materiais_C + materiais_D
+
+#Cada caminhão vai andar a 80 KM/h
+#Empresa A
+#Os 10 caminhões vão vir uma vez por dia
+#----
+tempo_por_KM = 60/80
+tempo_percurso_A = d_obra_A * tempo_por_KM
+qtd_percursos_feitos = 4
+tempo_descarga = 60
+qtd_descarga = 4
+qtd_caminhoes_por_viagem = 10
+#----
+
+tempo_descarregamento = tempo_descarga*qtd_caminhoes_por_viagem
+
+
+tempo_A = (tempo_percurso_A*qtd_percursos_feitos) + ((tempo_descarga*qtd_caminhoes_por_viagem)*qtd_descarga)
+tempo_A_horas = round((tempo_A/60),1)
+tempo_B = (d_obra_B * tempo_por_KM) + tempo_descarga
+tempo_B_horas = round((tempo_B/60),1)
+tempo_C = (d_obra_C * tempo_por_KM) + tempo_descarga
+tempo_C_horas = round((tempo_C/60),1)
+tempo_D = (d_obra_D * tempo_por_KM) + tempo_descarga
+tempo_D_horas = round((tempo_D/60),1)
+
+tempo_Total = tempo_A_horas + tempo_B_horas + tempo_C_horas + tempo_D_horas
+
+print("\n Para a realização da obra de uma Quadra Poliesportiva foram comprados materiais de quatro Empresas diferentes",
+      "e todas elas fornecem veí­culos para transporte do material com o frete de 3,5R$ por KM",
+      "rodado do veí­culo enquanto ele estiver com o material da empresa. Para o transporte de",
+      "materiais da Empresa A foram necessarios 40 veí­culos, sendo que a Empresa A",
+      "envia 10 veí­culos para viagem por dia, para a Empresa B, C e D foi",
+      "necessario 1 veí­culo de cada empresa.") 
+print(" Considerando que cada veí­culo se locomoveu",
+      "a 80KM/h, de acordo com o gráfico que demonstra a distância",
+      "entre as empresas e o canteiro de obras que está disponí­vel no relatório, obtemos os",
+      "seguintes resultados: ")
+
+print("\n|Empresa|  |Custo de Transporte|  |Custo de Material|  |Tempo de Abastecimento|",
+      f"\n    A            {valor_transporte_A}R$              {materiais_A}R$              {tempo_A_horas}h",
+      f"\n    B             {valor_transporte_B}R$               {materiais_B}R$                 {tempo_B_horas}h",
+      f"\n    C             {valor_transporte_C}R$                {materiais_C}R$                 {tempo_C_horas}h",
+      f"\n    D             {valor_transporte_D}R$                {materiais_D}R$                 {tempo_D_horas}h",
+      f"\n  Total          {valor_transporte_Total}R$              {materiais_Total}R$              {tempo_Total}h")
+
+print("\n O Tempo de Abastecimento considera o tempo em horas que os vei­culos ficaram no percurso",
+      "enquanto carregavam os materiais da empresa e o tempo de descarga dos materiais no canteiro de obras,"
+      " sendo que cada vei­culo era descarregado um por vez e que cada veiculo levava em média 1 hora para ser descarregado completamente.")
+print(" Os trabalhadores da obra trabalham apenas no perí­odo diurno, 12 horas por dia, ",
+      "sendo assim levou um período de 5 dias para fazer o total abastecimento dos ",
+      "materiais fornecidos pelas empresas.")
+print("\n Segue abaixo uma tabela que mostra o tempo de descarregamento de materiais em horas em relação aos dias trabalhados: ")
+print("\n    |Dias|   |Empresa A|   |Empresa B|   |Empresa C|   |Empresa D| ",
+      "\n      1         10h             -             -             -      ",
+      "\n      2         10h             -             -             -      "
+      "\n      3         10h             -             -             -      "
+      "\n      4         10h             -             -             -      "
+      "\n      5          -             1h            1h             1h      ")
+
+print("\n Na tabela acima podemos perceber que nos primeiros 4 dias terminaram de",
+      "abastecer todos os materiais da Empresa A e no quinto dia abasteceram",
+      "os materiais das Empresas B, C e D.")
+print(" Para mais detalhes sobre os valores dos materiais e para obter",
+      "acesso ao gráfico utilizado confira o relatório.")
+      
