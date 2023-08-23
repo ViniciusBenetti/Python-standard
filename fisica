@@ -1,0 +1,51 @@
+import math
+p = math.pi
+
+X1 = float(input('Insira o valor da Base da figura 1 (Triangulo): '))
+Y1 = float(input('Insira o valor da Altura da figura 1 (Triangulo): '))
+X2 = float(input('Insira o valor da Base da figura 2 (Retangulo): '))
+Y2 = float(input('Insira o valor da Altura da figura 2 (Retangulo): '))
+X3 = float(input('Insira o valor da Base da figura 3 (Semicirculo): '))
+Y3 = float(input('Insira o valor da Raio da figura 3 (Semicirculo): '))
+X4 = float(input('Insira o valor da Coordenadas X figura 4 (circulo): '))
+Y4 = float(input('Insira o valor da Coordenadas Y da figura 4 (circulo): '))
+
+XB1 = X1/3
+YB1 = Y1/3
+A1 = - (X1*Y1)/2
+QX1 = YB1*A1
+QY1 = XB1*A1
+
+XB2 = X2/2
+YB2 = Y2/2
+A2 = (X2*Y2)
+QX2 = YB2*A2
+QY2 = XB2*A2
+
+
+XB3 = X3/2
+YB3 = 80 + ((4*Y3)/(3*p))
+A3 = (p*(Y3**2))/2
+QX3 = YB3*A3
+QY3 = XB3*A3
+
+XB4 = X4
+YB4 = Y4
+A4 = - (p*(40**2))
+QX4 = YB4*A4
+QY4 = XB4*A4
+
+XT = (QY1+QY2+QY3+QY4)/(A1+A2+A3+A4)
+YT = (QX1+QX2+QX3+QX4)/(A1+A2+A3+A4)
+
+
+print("Os valores calculados a partir dos dados inseridos são:")
+print("FIGURA Area X\ Y\ QY QX ")
+print("1",A1,XB1,YB1,QY1,QX1)
+print("2",A2,XB2,YB2,QY2,QX2)
+print("3",A3,XB3,YB3,QY3,QX3)
+print("4",A4,XB4,YB4,QY4,QX4)
+
+print("Os valores de XT e YT são:")
+print("Valor de XT = ", XT)
+print("Valor de YT = ", YT)
