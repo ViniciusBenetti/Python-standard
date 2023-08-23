@@ -1,0 +1,109 @@
+# Você controla uma equipe esportiva de veículos automotores 
+# que emprega várias pessoas as quais ocupam diversas funções. 
+
+# Considerando que as pessoas estão agrupadas em 4 tipos de função
+# a saber: Engenheiro, Piloto, Controlador e Chefe de Oficina. 
+
+# Sabe-se que para engenheiros é pago 1.3 vezes o valor do controlador, 
+# o piloto receberá 5.5 vezes do valor do engenheiro,
+# controlador fará jus a 2.7 vezes do valor pago ao chefe de oficina 
+# e o chefe de oficina receberá 1.7 vezes o salário base da categoria. 
+
+# Logo, de acordo com as contratações realizadas, sabe-se
+# ainda que, de acordo com a quantidade total de pessoas necessárias 
+# ao projeto há uma distribuição de pessoas igualitária entre as funções.
+
+# Assim, calcule os salários a pagar para cada pessoa, 
+# bem como os totais por tipo de função e total geral.
+
+from random import randint
+
+salario_base = float(input("Informe o salario base:\nR$ "))
+qtde_pessoas = int(input("Informe a quantidade de pessoas no projeto: "))
+
+numero = time_eng = time_piloto = time_controlador = time_oficina = 0 
+
+resto = qtde_pessoas % 4
+
+if resto == 0: 
+    cada_grupo = qtde_pessoas/4
+else:
+    cada_grupo = int(qtde_pessoas / 4)
+
+    while numero < resto:
+        aleatorio = randint(1, 4)
+
+        if aleatorio == 1 and time_eng == 0:
+            time_eng += 1 # 1
+            numero += 1
+        elif aleatorio == 2 and time_piloto == 0:
+            time_piloto += 1 #2
+            numero += 1
+        elif aleatorio == 3 and time_controlador == 0:
+            time_controlador += 1 #3
+            numero += 1
+        elif aleatorio == 4 and time_oficina == 0:
+            time_oficina += 1 #4
+            numero += 1
+        else:
+            continue
+
+time_eng += cada_grupo
+time_piloto += cada_grupo
+time_controlador += cada_grupo
+time_oficina += cada_grupo
+
+
+
+
+
+
+
+
+
+
+
+
+engenheiro = round(1.3 * 2.7 * 1.7 * salario_base, 2)
+
+
+
+piloto = round(5.5 * 1.3 * 2.7 * 1.7 * salario_base, 2)
+
+
+
+controlador = round(2.7 * 1.7 * salario_base, 2)
+
+
+
+chefe_de_oficina = round(1.7 * salario_base, 2)
+
+
+
+
+
+
+
+
+
+
+engenheiros = time_eng * engenheiro
+
+pilotos = time_piloto * piloto
+
+controladores = time_controlador * controlador
+
+chefes_de_oficina = time_oficina * chefe_de_oficina
+
+total = engenheiros + pilotos + controladores + chefes_de_oficina
+
+
+print(f"Cada um dos {time_eng} engenheiros recebera R$ {engenheiro}, totalizando R$ {engenheiros}")
+print(f"Cada um dos {time_piloto} pilotos recebera R$ {piloto}, totalizando R$ {pilotos}")
+print(f"Cada um dos {time_controlador} controladores recebera R$ {controlador}, totalizando R$ {controladores}")
+print(f"Cada um dos {time_oficina} chefes de oficina recebera R$ {chefe_de_oficina}, totalizando R$ {chefes_de_oficina}")
+print(f"Total geral de R$ {total}")
+
+# print(f"R$ {piloto}")
+# print(f"R$ {controlador}")
+# print(f"R$ {chefe_de_oficina}")
