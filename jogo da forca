@@ -1,0 +1,311 @@
+from random import choice
+
+nomes = ["Ana", "João", "Maria", "Pedro", "Juliana", "Lucas", "Camila", "Rafael", "Fernanda", "Gabriel", "Bruna",
+         "Marcos", "Larissa", "Felipe", "Carolina", "Vinícius", "Luana", "André", "Mariana", "Thiago", "Letícia",
+         "José", "Jéssica", "Gustavo", "Natália", "Bruno", "Isabela", "Ricardo", "Amanda", "Matheus", "Renata",
+         "Daniel", "Paula", "Rafaela", "Leandro", "Vanessa", "Henrique", "Adriana", "Lucas", "Ana Carolina", "Eduardo",
+         "Priscila", "Samuel", "Jaqueline", "Marcelo", "Talita", "Rodrigo", "Carla", "Vitor", "Patrícia", "Davi",
+         "Lívia", "Alex", "Luiza", "Roberto", "Natália", "Igor", "Gabriela", "Fernando", "Isadora", "Lucas", "Beatriz",
+         "Marcos", "Mariana", "Joana", "Nícolas", "Gabrielle", "Henrique", "Karina", "Lucas", "Ana Luiza", "Renato",
+         "Thais", "Ricardo", "Julia", "Vinícius", "Gisele", "Bruno", "Fernanda", "Thiago", "Raquel", "Pedro",
+         "Gabriela", "Paulo", "Bárbara", "Arthur", "Jéssica", "André", "Luana", "Felipe", "Amanda", "Alex", "Ana Paula",
+         "Caio", "Letícia", "Rafael", "Laís", "Gustavo", "Camila", "Yasmim", "Kauan", "Beatriz", "Catarina", "Vitoria",
+         "Manuela", "Joaquim", "Henrique", "Isadora", "Daniela", "Luciana", "Melissa", "Mirella", "Fernanda", "Marília",
+         "Vanessa", "Adriana", "Andréia", "Ariana", "Benedito"]
+lugares_populares = ["Cristo Redentor", "Pão de Açúcar", "Fernando de Noronha", "Copacabana", "Ipanema",
+                     "Parque Nacional do Iguaçu", "Pelourinho", "Cataratas do Iguaçu", "Cânion do Xingó",
+                     "Chapada Diamantina", "Lagoa Azul", "Lapa", "Praia do Rosa", "Morro de São Paulo", "Praia da Pipa",
+                     "Lençóis Maranhenses", "Serra da Capivara", "Praia de Jericoacoara", "Bonito",
+                     "Parque Nacional dos Lençóis Maranhenses", "Baía dos Golfinhos", "Praia dos Carneiros", "Paraty",
+                     "Praia do Forte", "Florianópolis", "Recife Antigo", "Centro Histórico de Olinda",
+                     "São Miguel dos Milagres", "Cabo Frio", "Parque Nacional de Jericoacoara", "Ilha do Mel", "Búzios",
+                     "Itacaré", "Abrolhos", "Ilhabela", "Ilha Grande", "Pantanal", "Porto de Galinhas", "São Paulo",
+                     "Serra do Rio do Rastro", "Serra Gaúcha", "Curitiba", "Brasília", "Salvador", "Fortaleza",
+                     "Recife", "João Pessoa", "Natal", "Maceió", "Porto Seguro", "Belém", "Manaus", "Rio Branco",
+                     "Campo Grande", "São Luís", "Porto Alegre", "Foz do Iguaçu", "Belo Horizonte", "Goiânia", ]
+alimentos = ["Abacate", "Abacaxi", "Açaí", "Acerola", "Agrião", "Alcachofra", "Alface", "Alho", "Amaranto", "Amêndoas",
+             "Arroz", "Aspargos", "Aveia", "Avelã", "Banana", "Batata", "Batata-doce", "Berinjela", "Beterraba",
+             "Brócolis", "Cacau", "Café", "Caju", "Camarão", "Canela", "Canela em pó", "Cebola", "Cebolinha", "Cenoura",
+             "Cereja", "Chá", "Champignon", "Chia", "Chicória", "Chocolate", "Coco", "Couve", "Couve-flor", "Coxinha",
+             "Cravo", "Creme de leite", "Cupuaçu", "Damasco", "Doce de leite", "Erva-doce", "Ervilha", "Espinafre",
+             "Farelo de aveia", "Feijão", "Feijão-branco", "Figo", "Frango", "Gelatina", "Gengibre", "Goiaba",
+             "Groselha", "Grão-de-bico", "Guaraná", "Iogurte", "Jabuticaba", "Jaca", "Jiló", "Kiwi", "Laranja",
+             "Lentilha", "Lichia", "Lima", "Limão", "Linguado", "Lombo", "Mamão", "Manga", "Manjericão", "Manteiga",
+             "Maracujá", "Mel", "Melancia", "Melão", "Milho", "Mingau", "Mirtilo", "Molho de tomate", "Morango",
+             "Mostarda", "Noz-moscada", "Nozes", "Omelete", "Orégano", "Pão", "Palmito", "Papaia", "Pasta de amendoim",
+             "Pepino", "Pêssego", "Pimenta", "Pimentão", "Pinhão", "Pistache", "Pizza", "Polenta", "Pomarola", "Queijo",
+             "Quiabo", "Quibe", "Quinoa", "Rabanete", "Repolho", "Rúcula", "Sal", "Salada", "Salame", "Salgadinho",
+             "Salmão", "Salsa", "Salsão", "Salsicha", "Sorvete", "Soja", "Sopa", "Suco", "Sushi", "Tamarindo",
+             "Tangerina", "Tapioca"]
+filmes = ["O Poderoso Chefão", "O Senhor dos Anéis", "Harry Potter", "Os Vingadores", "Matrix", "Interestelar",
+          "Jurassic Park", "Star Wars", "Indiana Jones", "De Volta Para o Futuro", "Titanic", "Piratas do Caribe",
+          "Jumanji", "Esqueceram de Mim", "O Rei Leão", "Jurassic World", "O Exterminador do Futuro",
+          "Os Caça-Fantasmas", "Homem de Ferro", "Debi & Lóide", "Curtindo a Vida Adoidado", "Os Simpsons - O Filme",
+          "As Tartarugas Ninja", "Transformers", "Toy Story", "Velozes e Furiosos", "Frozen", "Batman", "Homem-Aranha",
+          "Pantera Negra", "Mad Max", "Guardiões da Galáxia", "007 - James Bond", "O Grande Lebowski", "Cidade de Deus",
+          "Os Suspeitos", "Clube da Luta", "O Iluminado"]
+aleatorio = ["Amplo", "Felicidade", "Paralelepípedo", "Estojo", "Imundície", "Divertido", "Alfabeto", "Avestruz",
+             "Bastidor", "Caatinga", "Demônio", "Elefante", "Frigideira", "Gorila", "Harmonia", "Ibis", "Juventude",
+             "Karatê", "Lunático", "Mistério", "Névoa", "Omelete", "Padaria", "Quintal", "Revolução", "Sereno",
+             "Tangerina", "Umbigo", "Ventania", "Xadrez", "Zangado", "Agulha", "Barril", "Cavalo", "Dinheiro", "Escada",
+             "Foguete", "Garrafa", "Higiene", "Inverno", "Jardim", "Ketchup", "Liberdade", "Médico", "Nuvem", "Oceano",
+             "Preguiça", "Quadrado", "Ritmo"]
+chances = 10
+palavra_parcial = ""
+print("                         bem vindo ao jogo da forca!   ")
+categoria = int(input(
+    "escolha uma categoria: \n 1 para nome de pessoas \n 2 para lugares populares no brasil \n 3 para alimentos \n 4 para filmes \n 5 para qualquer coisa(nível hard)"))
+if categoria == 1:
+    nomes = choice(nomes)
+    print(
+        f"você escolheu a categoria: nome de pessoas, o nome da pessoa tem {len(nomes)} letras e você tem 10 chances.")
+    letra = input("escolha uma letra: ")
+    letra = letra.lower()
+    nomes = nomes.lower()
+    palavra_parcial = ["_" for _ in range(len(nomes))]
+    while len(letra) == 1:
+        if letra in nomes:
+            if letra in palavra_parcial:
+                chances -= 1
+                print(f"letra repetida, você tem {chances} chances.")
+
+            for i, L in enumerate(nomes):
+                if L == letra:
+                    palavra_parcial[i] = L
+            print(palavra_parcial)
+
+        if chances == 1:
+            print(f"você perdeu todas suas chances! a palavra era {nomes}")
+            break
+
+        elif letra not in nomes:
+            chances -= 1
+            print(f"você perdeu uma chance agora resta-te {chances} chances.")
+            if chances == 5:
+                print(
+                    "você perdeu metade das suas chances, caso queira chutar digite o nome todo.(você pode chutar a qualquer momento perderá tudo)")
+        elif set(palavra_parcial) == set(nomes):
+            print(f"você ganhou o jogo, a palavra formada foi {nomes} e você teve um score de {chances}")
+            break
+        letra = input("digite outra letra:")
+
+    while len(letra) > 1:
+        if letra == nomes:
+            print(f"você acertou o chute parabéns você venceu e acertou o nome {nomes} com score de {chances}")
+            break
+        else:
+            chances -= 5
+            if chances < 0:
+                chances = 0
+            print(f"você errou perca o jogo. Você teve um score de {chances} a palavra era {nomes}")
+            break
+
+if categoria == 2:
+    lugares_populares = choice(lugares_populares)
+    print(
+        f"você escolheu a categoria: lugares populares no brasil, o nome do lugar tem {len(lugares_populares)} letras e você tem 10 chances.")
+    letra = input("escolha uma letra:")
+    letra.lower()
+    lugares_populares.lower()
+    palavra_parcial = ["_" for _ in range(len(lugares_populares))]
+    while len(letra) == 1:
+        if letra in lugares_populares:
+            if letra in palavra_parcial:
+                chances -= 1
+                print(f"letra repetida, você tem {chances} chances.")
+
+            for i, L in enumerate(lugares_populares):
+                if L == letra:
+                    palavra_parcial[i] = L
+            print(palavra_parcial)
+
+        if chances == 1:
+            print(f"você perdeu todas suas chances! a palavra era {lugares_populares}")
+            break
+
+        elif letra not in lugares_populares:
+            chances -= 1
+            print(f"você perdeu uma chance agora resta-te {chances} chances.")
+            if chances == 5:
+                print(
+                    "você perdeu metade das suas chances, caso queira chutar digite o nome todo.(você pode chutar a qualquer momento perderá tudo)")
+        elif set(palavra_parcial) == set(lugares_populares):
+            print(f"você ganhou o jogo, a palavra formada foi {lugares_populares} e você teve um score de {chances}")
+            break
+        letra = input("digite outra letra:")
+
+    while len(letra) > 1:
+        if letra == lugares_populares:
+            print(
+                f"você acertou o chute parabéns você venceu e acertou o nome {lugares_populares} com score de {chances}")
+            break
+        else:
+            chances -= 5
+            if chances < 0:
+                chances = 0
+            print(f"você errou perca o jogo. Você teve um score de {chances} a palavra era {lugares_populares}")
+            break
+
+if categoria == 3:
+    alimentos = choice(alimentos)
+    print(
+        f"você escolheu a categoria: alimentos, o nome do alimento tem {len(alimentos)} letras e você tem 10 chances.")
+    letra = input("escolha uma letra:")
+    letra.lower()
+    alimentos.lower()
+    palavra_parcial = ["_" for _ in range(len(alimentos))]
+    while len(letra) == 1:
+        if letra in alimentos:
+            if letra in palavra_parcial:
+                chances -= 1
+                print(f"letra repetida, você tem {chances} chances.")
+
+            for i, L in enumerate(alimentos):
+                if L == letra:
+                    palavra_parcial[i] = L
+            print(palavra_parcial)
+
+        if chances == 1:
+            print(f"você perdeu todas suas chances! a palavra era {alimentos}")
+            break
+
+        elif letra not in alimentos:
+            chances -= 1
+            print(f"você perdeu uma chance agora resta-te {chances} chances.")
+            if chances == 5:
+                print(
+                    "você perdeu metade das suas chances, caso queira chutar digite o nome todo.(você pode chutar a qualquer momento perderá tudo)")
+        elif set(palavra_parcial) == set(alimentos):
+            print(f"você ganhou o jogo, a palavra formada foi {alimentos} e você teve um score de {chances}")
+            break
+        letra = input("digite outra letra:")
+
+    while len(letra) > 1:
+        if letra == alimentos:
+            print(f"você acertou o chute parabéns você venceu e acertou o nome {alimentos} com score de {chances}")
+            break
+        else:
+            chances -= 5
+            if chances < 0:
+                chances = 0
+            print(f"você errou perca o jogo. Você teve um score de {chances} a palavra era {alimentos}")
+            break
+
+if categoria == 4:
+    filmes = choice(filmes)
+    print(f"você escolheu a categoria: filmes, o nome do filme tem {len(filmes)} letras e você tem 10 chances.")
+    letra = input("escolha uma letra:")
+    letra.lower()
+    filmes.lower()
+    palavra_parcial = ["_" for _ in range(len(filmes))]
+    while len(letra) == 1:
+        if letra in filmes:
+            if letra in palavra_parcial:
+                chances -= 1
+                print(f"letra repetida, você tem {chances} chances.")
+
+            for i, L in enumerate(filmes):
+                if L == letra:
+                    palavra_parcial[i] = L
+            print(palavra_parcial)
+
+        if chances == 1:
+            print(f"você perdeu todas suas chances! a palavra era {filmes}")
+            break
+
+        elif letra not in filmes:
+            chances -= 1
+            print(f"você perdeu uma chance agora resta-te {chances} chances.")
+            if chances == 5:
+                print(
+                    "você perdeu metade das suas chances, caso queira chutar digite o nome todo.(você pode chutar a qualquer momento perderá tudo)")
+        elif set(palavra_parcial) == set(filmes):
+            print(f"você ganhou o jogo, a palavra formada foi {filmes} e você teve um score de {chances}")
+            break
+        letra = input("digite outra letra:")
+
+    while len(letra) > 1:
+        if letra == filmes:
+            print(f"você acertou o chute parabéns você venceu e acertou o nome {filmes} com score de {chances}")
+            break
+        else:
+            chances -= 5
+            if chances < 0:
+                chances = 0
+            print(f"você errou perca o jogo. Você teve um score de {chances} a palavra era {alimentos}")
+            break
+
+if categoria == 5:
+    aleatorio = choice(aleatorio)
+    print(f"você escolheu a categoria: aleatorio, o nome da palavra tem {len(aleatorio)} letras e você tem 10 chances.")
+    letra = input("escolha uma letra")
+    letra = letra.lower()
+    aleatorio = aleatorio.lower()
+    palavra_parcial = ["_" for _ in range(len(aleatorio))]
+
+    while chances >= 1:
+
+        if len(letra) == 1:
+
+            if chances == 6:
+                print("você pode chutar a qualquer instante escrevendo a palavra toda, mas perderá todas as chances")
+
+            if len(aleatorio) - len(palavra_parcial) == 3:
+                print("você está quase adivinhando, pode chutar se quiser")
+
+            if letra in palavra_parcial:
+                chances -= 1
+                print(f"letra repetida,você tem {chances} chances.")
+
+            if letra in aleatorio:
+                for i, L in enumerate(aleatorio):
+                    if L == letra:
+                        palavra_parcial[i] = L
+                print(palavra_parcial)
+
+            if chances == 1:
+                print(f"você perdeu todas as suas chances! a palavra era {aleatorio}")
+                break
+
+            if letra not in aleatorio and letra not in palavra_parcial:
+                chances -= 1
+                print(f"você perdeu uma chance agora resta-te {chances} chances.")
+
+            elif set(aleatorio) == set(palavra_parcial):
+                print(f"você ganhou o jogo, a palavra formada foi {aleatorio} e você teve um score de {chances}")
+                break
+
+
+        elif len(letra) != 1:
+
+            if letra == aleatorio:
+                print(f"você acertou o chute parabéns você venceu e acertou o nome {aleatorio} com score de {chances}")
+                break
+
+            elif letra != aleatorio:
+                chances -= 5
+
+                if chances < 0:
+                    chances = 0
+
+                print(f"você errou perca o jogo. Você teve um score de {chances} a palavra era {aleatorio}")
+                break
+
+        letra = input("digite outra letra:")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
