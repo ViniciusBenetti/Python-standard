@@ -1,0 +1,110 @@
+cc = float(input('digite a chance crítica da sua arma em %'))
+cd = float(input('digite o dano crítico da sua arma'))
+ms = float(input('digite o tiro múltiplo da sua arma'))
+fr = float(input('digite a taxa de tiro da sua arma'))
+
+
+class ModCC:
+    point_strike = 2.5
+    critical_delay = 3.0
+
+
+class ModCD:
+    vital_sense = 2.2 
+    hammer_shot = 0.6
+
+class ModDMG:
+    serration = 2.65
+    heavy_caliber = 1.65
+
+class ModMulti:
+    split_chamber = 1.9
+    vigilante_armaments = 0.6
+
+class ModElement90:
+    rad =  1.4 * 1.75
+    p_cryo = 1.58 * 1.25
+
+
+class ModFireRate:
+    vile_acceleration = 1.9 
+    speed_trigger = 0.6 
+    primed_shred = 0.55
+    vigilante_fervor = 0.45
+
+
+
+
+mods= ['point_strike', 'critical_delay',
+             'vital_sense', 'hammer_shot',
+             'serration', 'heavy_caliber',
+             'split_chamber', 'vigilante_armaments',
+             'rad','p_cryo',
+             'vile_acceleration', 'speed_trigger',
+             'primed_shred', 'vigilante_fervor']  
+
+
+build = []
+buildstr = []
+
+
+for i in mods:
+    if hasattr(ModCC, i):
+        valor = getattr(ModCC, i)
+        chance_critica = valor * cc 
+        if chance_critica <=100:
+            ccdps = ((100 - chance_critica)+cd * chance_critica) / 100
+        elif chance_critica > 100 and chance_critica <= 200:
+            ccdps = ((200 - chance_critica)+(cd-1) * chance_critica) / 100
+
+        build.append(ccdps)
+        buildstr.append(i)
+
+    elif hasattr(ModCD, i):
+        valor = getattr(ModCD, i)
+        dano_critico = valor * cd
+
+        cddps = ((100 - cc)+dano_critico * cc) / 100
+
+        build.append(cddps)
+        buildstr.append(i)
+    
+    elif hasattr(ModDMG, i):
+        valor = getattr(ModDMG, i)
+        dano = valor
+
+        build.append(dano)
+        buildstr.append(i)
+          
+    elif hasattr(ModMulti, i):
+        valor = getattr(ModMulti, i)
+        tiro_multiplo = ms * valor
+
+        build.append(tiro_multiplo)
+        buildstr.append(i)
+    
+    elif hasattr(ModFireRate, i):
+        valor = getattr(ModFireRate, i)
+        taxa_tiro = fr * valor
+
+        build.append(taxa_tiro)
+        buildstr.append(i)
+    
+    elif hasattr(ModElement90, i):
+        valor = getattr(ModElement90, i)
+        elemento = valor
+    
+        build.append(elemento)
+        buildstr.append(i)
+    
+
+ligacao = list(zip(build, buildstr))
+ligacao_ordenada = sorted(ligacao, reverse=True)
+
+
+ligacao_sem_valores = [item[1] for item in ligacao_ordenada]
+
+print(ligacao_sem_valores)
+print(sorted(build,reverse=True))
+
+
