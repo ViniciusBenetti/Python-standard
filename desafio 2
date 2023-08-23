@@ -1,0 +1,50 @@
+# A construção de uma vila de casas populares 
+# requer o uso de placas pré-moldadas. 
+
+# Cada casa necessita de quantidade iguais de placas a um determinado custo. 
+
+# Sabe-se que há perda de material estimada em percentual(%). 
+
+# Considerando o custo das placas como sendo o custo do empreendimento, 
+# elabore um algoritmo 
+# para estimar a tabela de valores de venda de cada casa 
+# permitindo um determinado percentual(%) 
+# de lucratividade com crescimento 
+# mínimo de 2% entre cada casa, limitado a 20%.
+
+from random import random
+
+# entrada esperando confirmar validacao dos dados
+while True:
+    qtde_casas = int(input("Informe a quatidade de casas que deseja construir: "))
+    qtde_placas = int(input("Informe a quantidade de placas necessarias pra construir uma casa: "))
+    valor_placas = float(input("Informe o valor de cada placa:\nR$ "))
+    perda = float(input("Informe a perda de material em percentual (%): "))
+
+    if 0 <= perda < 100 and qtde_casas > 0 and qtde_placas > 0 and valor_placas > 0:
+        break
+    else:
+        print("Por favor, informe os dados novamente")
+
+
+textoSaida = "=" * 4 + "Tabela de Valores" + 4 * "="
+
+placas_a_comprar = qtde_placas / (1 - perda/100)
+
+valor_placas = placas_a_comprar * valor_placas
+
+#a quatidade de digitos no total de casas, por exemplo 20 casas 2 digitos
+digitos = len(str(qtde_casas))
+
+for i in range(1, qtde_casas + 1):
+
+    lucro = random() * 18 + 2 # lucro em porcentagem entre 2% e 20%
+
+    valor_casa = valor_placas * (1 + lucro/100)
+
+    valor_casa = round(valor_casa, 2)
+
+    textoSaida += f"\nCasa #{i:0{digitos}}: R$ {valor_casa:,.2f}"
+
+# saida
+print(textoSaida)
