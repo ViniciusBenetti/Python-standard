@@ -1,0 +1,50 @@
+titania_prime_speed = 1.0
+titania_prime_fligt_speed = 20  # m/s
+
+rush = 0.3
+amalgam = 0.25
+armored_agillity = 0.15
+sprint_boost = 0.15
+amar = 0.15
+speed_drift = 0.12
+
+titania_rush = titania_prime_speed + rush
+titania_rush_amalgam = titania_rush + amalgam
+titania_rush_amalgam_armored = titania_rush_amalgam + armored_agillity
+titania_rush_amalgam_armored_sprint_boost = titania_rush_amalgam_armored + sprint_boost
+titania_rush_amalgam_armored_sprint_boost_amar = titania_rush_amalgam_armored_sprint_boost + amar
+titania_rush_amalgam_armored_sprint_boost_amar_speed_drift = titania_rush_amalgam_armored_sprint_boost_amar + speed_drift
+
+
+
+
+razorwing_blitz =  2.0
+while razorwing_blitz < 4.0:
+    if razorwing_blitz < 3.0:
+        speed = razorwing_blitz * titania_prime_fligt_speed
+    elif razorwing_blitz >= 3.0 and razorwing_blitz < 3.5:
+        speed = razorwing_blitz * titania_prime_fligt_speed / 2
+    elif razorwing_blitz >= 3.5:
+        speed = razorwing_blitz * titania_prime_fligt_speed / 3
+    print(f'{speed:.2f}')
+    razorwing_blitz += 0.01
+
+molt = 1.2
+while molt < 3.1:
+    if molt < 2.0:
+        speed = molt * titania_prime_speed * titania_prime_fligt_speed
+    elif molt >= 2.0 and molt <= 2.25:
+        speed = molt * titania_prime_speed * titania_prime_fligt_speed / 2
+    elif molt > 2.25 and molt >= 2.5:
+        speed = molt * titania_prime_speed * titania_prime_fligt_speed / 3
+    elif molt > 2.5:
+        speed = molt * titania_prime_speed * titania_prime_fligt_speed / 5
+    print(f'{speed:.2f}')
+    molt += 0.1
+
+print(titania_rush*20)
+print(titania_rush_amalgam*20 )
+print(titania_rush_amalgam_armored*20 / 2)
+print(titania_rush_amalgam_armored_sprint_boost*20 / 2)
+print(titania_rush_amalgam_armored_sprint_boost_amar*20 / 3)
+print(titania_rush_amalgam_armored_sprint_boost_amar_speed_drift*20 / 4)
