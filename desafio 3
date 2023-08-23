@@ -1,0 +1,38 @@
+# Durante a fase de levantamento de custos dos projetos,
+# verificou-se a necessidade de construir um algoritmo 
+# capaz de classificar os projetos de acordo com o nível de complexidade: Baixa, Média ou Alta. 
+
+# Projetos que necessitarem de equipes com até 30 pessoas 
+# serão considerados de baixa complexidade, 
+# entre 31 e 100 pessoas de média complexidade 
+# e acima de 100, alta complexidade.
+
+# No entanto, considerando a rotatividade de pessoas 
+# e a fim mitigar riscos em razão de não ter o contingente de pessoas necessárias ao planejado,
+# após classificar o projeto de acordo com a quantidade de pessoas, 
+# determine qual a quantidade de pessoas deverá ser contratada considerando que é necessário:
+# +10% de pessoas para projetos de baixa complexidade, 
+# +22.5% (média) e
+# +31.73% (alta).
+
+from math import ceil
+
+qtde_pessoas = int(input("Informe a quatidade de pessoas que já existe no projeto: "))
+
+if 0 < qtde_pessoas < 31:
+    contratada = qtde_pessoas * 10/100
+    contratada = ceil(contratada)
+    textoSaida = f"Sua equipe precisará contratar {contratada} funcionário(s) a fim de mitigar riscos."
+elif 31 <= qtde_pessoas <= 100:
+    contratada = qtde_pessoas * 22.5/100
+    contratada = ceil(contratada)
+    textoSaida = f"Sua equipe precisará contratar {contratada} funcionários a fim de mitigar riscos."
+elif qtde_pessoas > 100:
+    contratada = qtde_pessoas * 31.73/100
+    contratada = ceil(contratada)
+    textoSaida = f"Sua equipe precisará contratar {contratada} funcionários a fim de mitigar riscos."
+else:
+    textoSaida = f"Impossivel de classificar o projeto com o valor informado."
+
+
+print(textoSaida)
