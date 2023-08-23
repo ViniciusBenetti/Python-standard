@@ -1,0 +1,61 @@
+"""The World Meteorological Organization (WMO) since 1950 establishes the initial global state, which shows weather
+conditions across the planet from data obtained by member countries at the same time. The weather forecast is made
+from the analysis of data captured worldwide by this international network. Even with so much data and powerful computers,
+ much of the forecast comes from meteorologists reading - that's why forecasts for the same location on the same day
+ can vary. Temperature measurements for the city of Aracaju are carried out according to WMO standards in two different
+  weather stations (Alto do Santo Antônio and Aeroporto). For analysis and climate control is requested to you show
+  every 12h in each station the highest temperature measurement as well medium data. The meteorologist in Aeroporto
+Station realized, by observation, anomaly in the eleventh and 20th hours of the first day, this could be identified
+in your data analysis? What kind of anomaly it was?
+"""
+
+from random import uniform
+TA, TS = [], []
+for j in range(24):
+    TA.append(uniform(24,45))
+    TS.append(uniform(28,45))
+
+print('\nTEMPERATURAS MEDIDAS NAS ESTAÇÕES METEREOLÓGICAS DE ARACAJU:\n')
+for j in range(24):
+    print('Aeroporto às %dh:' %j,'%.2f'%TA[j], end='ºC; ')
+    print('Colina do Santo Antônio às %dh:' % j, '%.2fºC'%TS[j])
+#TA = [33.2,35.3,32.1,38.4,42.1,40,39.2,35.3,32.1,38.4,41.2,33.2,35.3,32.1,38.4,42.1,40,39.2,35.3,32.1,38.4,41.2,33.9,41.2]
+#TS = [35.4,32.1,38.1,39.4,40.1,39.1,37.2,34.3,30.1,35.4,41.2,33.2,37.3,32.1,39.4,40.1,40,39.2,37.3,32.1,32.4,40.2,35.9,39.4]
+
+print('\n\nANÁLISE DOS DADOS DA ESTAÇÃO DO ALTO DO SANTO ANTÔNIO')
+TSmax1 = max(TS[0:12])
+TSmed1 = sum(TS[0:12])/12
+TSmax2 = max(TS[12:24])
+TSmed2 = sum(TS[12:24])/12
+print('\nA média das 12 primeiras horas do dia (0 as 12h) foi de %.2fºC e a maior temperatura identificada neste horário foi de %.2fºC'%(TSmed1,TSmax1))
+print('A média das 12 últimas horas do dia (12 as 24h) foi de %.2fºC e a maior temperatura identificada neste horário foi de %.2fºC'%(TSmed2,TSmax2))
+
+print('\n\nANÁLISE DOS DADOS DA ESTAÇÃO DO AEROPORTO')
+TAmax1 = max(TA[0:12])
+TAmed1 = sum(TA[0:12])/12
+TAmax2 = max(TA[12:24])
+TAmed2 = sum(TA[12:24])/12
+print('\nA média das 12 primeiras horas do dia (0 as 12h) foi de %.2fºC e a maior temperatura identificada neste horário foi de %.2fºC'%(TAmed1,TAmax1))
+print('A média das 12 últimas horas do dia (12 as 24h) foi de %.2fºC e a maior temperatura identificada neste horário foi de %.2fºC'%(TAmed2,TAmax2))
+
+print('\n\nANÁLISE DE POSSÍVEIS ANOMALIAS AS 11h e AS 20h DO REFERIDO DIA')
+if TA[10] > TAmed1 + 2:
+    print('\nAnomalia confirmada!! Possibilidade de ressaca às 11h da manhã')
+if TA[19] > TAmed2 + 2:
+    print('\nAnomalia confirmada!! Possibilidade de ressaca às 20h da noite')
+
+if TA[10] > 44:
+    print('\nAnomalia confirmada!! Onda de calor momentânea às 11h, alta probabilidade de insolação. RECOMENDA-SE USO DE PROTETOR SOLAR!!')
+
+c1,c2=0,0
+for i in range(7,11):
+    Tr1 = TA[i] - TA[i-1]
+    Tr2 = TA[i+9] - TA[i+8]
+    if Tr1<0.:
+        c1=c1+1
+    if Tr2<0.:
+        c2=c2+1
+if c1==3:
+    print('\nAnomalia confirmada!! Declínio de temperatura identificado as 11h, possibilidade de queda da Umidade relativa do ar… RECOMENDA-SE MAIOR HIDRATAÇÃO DURANTE ESTE HORÁRIO')
+if c2==3:
+    print('\nAnomalia confirmada!! Declínio de temperatura identificado as 20h, possibilidade de queda da Umidade relativa do ar… RECOMENDA-SE CLIMATIZADOR NO QUARTO')
